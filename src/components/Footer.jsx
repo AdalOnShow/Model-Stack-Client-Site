@@ -34,7 +34,7 @@ const Footer = () => {
         </nav>
       </footer>
       <aside className='flex-center my-4'>
-        <p>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
+        <p>Copyright © {new Date().getFullYear()} - All right reserved by Model Stack - AI Model Inventory Manager</p>
       </aside>
     </div>
   )
