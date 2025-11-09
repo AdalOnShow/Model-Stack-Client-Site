@@ -1,12 +1,32 @@
 import React from 'react'
 import { Link, Links, NavLink } from 'react-router'
+import useAuth from '../hooks/useAuth';
+import { toast } from 'sonner';
 
 const Navbar = () => {
+  const { user, logOutFunc } = useAuth();
+
+  const handleLogOut = () => {
+    toast('Are you sure?', {
+      action: {
+        label: 'Yes Logout',
+        onClick: () => {
+          logOutFunc()
+            .then(() => {
+              toast.success("Logout successful!")
+            })
+            .catch((error) => {
+              toast.error(error.message)
+            });
+        },
+      },
+    });
+  }
 
   const navLinks = (<>
-    <li><NavLink to="/">Home</NavLink></li>
-    <li><NavLink to="/add-model">Add Model</NavLink></li>
-    <li><NavLink to="/view-models">View Models</NavLink></li>
+    <li><NavLink className='hover:bg-white hover:text-primary font-medium' to="/">Home</NavLink></li>
+    <li><NavLink className='hover:bg-white hover:text-primary font-medium' to="/add-model">Add Model</NavLink></li>
+    <li><NavLink className='hover:bg-white hover:text-primary font-medium' to="/view-models">View Models</NavLink></li>
   </>)
 
   return (
@@ -30,22 +50,24 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn">Login</Link>
-        {/* <div className="dropdown dropdown-end">
+        {user ? <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                src={user.photoURL} />
             </div>
           </div>
           <ul
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-            <li><Link to="/model-purchase">Model Purchase</Link></li>
-            <li><Link to="/my-models">My Purchase</Link></li>
+            <li className='font-bold ml-2 text-base'>{user.displayName}</li>
+            <li className='font-medium ml-2 text-base mb-4 break-all whitespace-normal'>{user.email}</li>
+            <li><Link className='text-base' to="/model-purchase">Model Purchase</Link></li>
+            <li><Link className='text-base mb-4' to="/my-models">My Purchase</Link></li>
+            <li><button className="btn" onClick={handleLogOut}>Logout</button></li>
           </ul>
-        </div> */}
+        </div> : <Link className='btn' to="/login">Login</Link>}
       </div>
     </div>
   )

@@ -20,7 +20,7 @@
 }
 
 .active {
-  @apply bg-gray-200;
+  @apply font-bold text-primary;
 }
 
 .flex-center {
