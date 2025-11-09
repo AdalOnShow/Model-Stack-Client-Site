@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import useAuth from './../hooks/useAuth';
 import { toast } from 'sonner';
@@ -6,6 +6,7 @@ import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
   const { createUserFunc, setUser, googleSigninFunc } = useAuth();
+  const [registerLoader, setRegisterLoader] = useState(false)
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,6 +28,7 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    setRegisterLoader(true)
 
     const name = e.target.name.value;
     const photo = e.target.photo.value;
@@ -116,7 +118,8 @@ const Register = () => {
               className="bg-linear-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150"
               type="submit"
             >
-              Register
+              {registerLoader ? (<>
+                <span className="loading loading-spinner" />Loading...</>) : "Register"}
             </button>
             <p className="text-white mt-4">
               Already have an account?

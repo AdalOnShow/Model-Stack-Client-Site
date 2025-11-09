@@ -63,8 +63,8 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
             <li className='font-bold ml-2 text-base'>{user.displayName}</li>
             <li className='font-medium ml-2 text-base mb-4 break-all whitespace-normal'>{user.email}</li>
-            <li><Link className='text-base' to="/model-purchase">Model Purchase</Link></li>
-            <li><Link className='text-base mb-4' to="/my-models">My Purchase</Link></li>
+            <li><NavLink className='hover:bg-white hover:text-primary font-medium text-base' to="/">Model Purchase</NavLink></li>
+            <li><NavLink className='hover:bg-white hover:text-primary font-medium text-base mb-4' to="/">My Purchase</NavLink></li>
             <li><button className="btn" onClick={handleLogOut}>Logout</button></li>
           </ul>
         </div> : <Link className='btn' to="/login">Login</Link>}

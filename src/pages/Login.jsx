@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import { toast } from 'sonner';
 
 const Login = () => {
   const { loginUserFunc, setUser, googleSigninFunc } = useAuth();
+  const [loginLoader, setLoginLoader] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -32,6 +33,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setLoginLoader(true)
     const email = e.target.email.value;
     const password = e.target.password.value;
 
@@ -85,10 +87,11 @@ const Login = () => {
               name="password"
             />
             <button
-              className="bg-linear-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150"
+              className="bg-linear-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150 cursor-pointer"
               type="submit"
             >
-              Login
+              {loginLoader ? (<>
+                <span className="loading loading-spinner" />Login...</>) : "Login"}
             </button>
             <p className="text-white mt-4">
               Don't have an account?
