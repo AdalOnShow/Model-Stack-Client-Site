@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
-import useAuth from './../hooks/useAuth';
 import { toast } from 'sonner';
 import { updateProfile } from 'firebase/auth';
+import useAuth from '../hooks/useAuth';
 
 const Register = () => {
   const { createUserFunc, setUser, googleSigninFunc } = useAuth();

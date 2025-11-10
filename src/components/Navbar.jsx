@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Links, NavLink } from 'react-router'
-import useAuth from '../hooks/useAuth';
 import { toast } from 'sonner';
+import useAuth from '../hooks/useAuth';
 
 const Navbar = () => {
   const { user, logOutFunc } = useAuth();
@@ -26,7 +26,7 @@ const Navbar = () => {
   const navLinks = (<>
     <li><NavLink className='hover:bg-white hover:text-primary font-medium' to="/">Home</NavLink></li>
     <li><NavLink className='hover:bg-white hover:text-primary font-medium' to="/add-model">Add Model</NavLink></li>
-    <li><NavLink className='hover:bg-white hover:text-primary font-medium' to="/view-models">View Models</NavLink></li>
+    <li><NavLink className='hover:bg-white hover:text-primary font-medium' to="/models">View Models</NavLink></li>
   </>)
 
   return (

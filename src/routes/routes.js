@@ -4,6 +4,8 @@ import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Error404 from "../components/Error404";
+import AllModels from "../pages/AllModels";
+import ModelDetails from "../pages/ModelDetails";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,13 @@ const router = createBrowserRouter([
       {
         path: "/register",
         Component: Register
+      },
+      {
+        path: "/models",
+        Component: AllModels
+      }, {
+        path: "/models/:id",
+        Component: ModelDetails
       },
       {
         path: "*",

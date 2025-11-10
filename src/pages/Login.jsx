@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router';
-import useAuth from '../hooks/useAuth';
 import { toast } from 'sonner';
+import useAuth from '../hooks/useAuth';
 
 const Login = () => {
   const { loginUserFunc, setUser, googleSigninFunc } = useAuth();
