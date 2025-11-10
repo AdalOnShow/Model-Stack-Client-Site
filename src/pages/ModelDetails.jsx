@@ -3,11 +3,15 @@ import { useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
 import { toast } from "sonner";
+import { Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import ModelNotFound from './../components/ModelNotFound';
 
 const ModelDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const axiosInstance = useAxios();
+  const navigate = useNavigate();
 
   const [model, setModel] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -42,11 +46,9 @@ const ModelDetails = () => {
       })
         .then((res) => {
           if (res.data.insertedId) {
-            // Update purchased count instantly in server
             axiosInstance.patch(`/models/${_id}`, { purchased: purchased + 1 })
               .then(() => {
                 toast.success("Model purchased successfully!");
-                // update Ui
                 setModel(prevModel => ({
                   ...prevModel,
                   purchased: prevModel.purchased + 1
@@ -67,20 +69,30 @@ const ModelDetails = () => {
     }
   };
 
-  // const handleDelete = async () => {
-  //   if (!confirm("Are you sure you want to delete this model?")) return;
-  //   try {
-  //     await axiosInstance.delete(`/models/${id}`);
-  //     alert("Model deleted successfully!");
-  //     // Redirect or refresh if needed
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+  const handleDelete = async () => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "question",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      denyButtonText: `Don't delete`,
+    }).then(async(result)  => {
+      if (result.isConfirmed) {
+        try {
+          await axiosInstance.delete(`/models/${id}`);
+          Swal.fire("Deleted!", "", "success");
+          navigate("/models");
+        } catch (err) {
+          toast.error(err?.message || "Something went wrong");
+        }
+      }
+    });
+  };
   const isCreator = createdBy === user?.email;
 
   if (loading) return <p className="text-center py-10">Loading...</p>;
-  if (!model) return <p className="text-center py-10 text-red-500 text-4xl font-medium">Model not found</p>;
+  if (!model) return <ModelNotFound />;
 
 
   return (
@@ -108,7 +120,7 @@ const ModelDetails = () => {
         <div className="flex gap-3">
           <button
             onClick={handlePurchase}
-            className="btn btn-primary cursor-pointer"
+            className="btn btn-primary cursor-pointer text-white"
           >
             {purchasesLoading ? (<>
               <span className="loading loading-spinner" />Purchasing Model...</>) : "Purchase Model"}
@@ -116,17 +128,18 @@ const ModelDetails = () => {
 
           {isCreator && (
             <>
-              <button
+              <Link
+                to={`/models/${id}/edit`}
                 className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg transition"
               >
                 Edit
-              </button>
-              {/* <button
+              </Link>
+              <button
                 onClick={handleDelete}
                 className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"
               >
                 Delete
-              </button> */}
+              </button>
             </>
           )}
         </div>

@@ -7,6 +7,7 @@ import Error404 from "../components/Error404";
 import AllModels from "../pages/AllModels";
 import ModelDetails from "../pages/ModelDetails";
 import AddModel from "../pages/AddModel";
+import EditeModel from "../pages/EditeModel";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/models/:id",
         Component: ModelDetails
+      },
+      {
+        path: "/models/:id/edit",
+        Component: EditeModel
       },
       {
         path: "*",
