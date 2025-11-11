@@ -73,10 +73,8 @@ const ModelDetails = () => {
     Swal.fire({
       title: "Are you sure?",
       icon: "question",
-      showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Yes, delete it!",
-      denyButtonText: `Don't delete`,
     }).then(async(result)  => {
       if (result.isConfirmed) {
         try {

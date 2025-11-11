@@ -2,24 +2,27 @@ import React from 'react'
 import { Link, Links, NavLink } from 'react-router'
 import { toast } from 'sonner';
 import useAuth from '../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const { user, logOutFunc } = useAuth();
 
   const handleLogOut = () => {
-    toast('Are you sure?', {
-      action: {
-        label: 'Yes Logout',
-        onClick: () => {
-          logOutFunc()
-            .then(() => {
-              toast.success("Logout successful!")
-            })
-            .catch((error) => {
-              toast.error(error.message)
-            });
-        },
-      },
+    Swal.fire({
+      title: "Do Want To Logout?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Logout!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        logOutFunc()
+          .then(() => {
+            toast.success("Logout successful!")
+          })
+          .catch((error) => {
+            toast.error(error.message)
+          });
+      }
     });
   }
 

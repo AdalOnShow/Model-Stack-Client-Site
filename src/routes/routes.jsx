@@ -10,6 +10,7 @@ import AddModel from "../pages/AddModel";
 import EditeModel from "../pages/EditeModel";
 import MyModels from "../pages/MyModels";
 import ModelPurchase from "../pages/ModelPurchase";
+import PrivateRoutes from './PrivateRoutes';
 
 const router = createBrowserRouter([
   {
@@ -34,27 +35,27 @@ const router = createBrowserRouter([
       },
       {
         path: "add-model",
-        Component: AddModel
+        element: <PrivateRoutes><AddModel /></PrivateRoutes>
       },
       {
         path: "/models/:id",
-        Component: ModelDetails
+        element: <PrivateRoutes><ModelDetails /></PrivateRoutes>
       },
       {
         path: "/models/:id/edit",
-        Component: EditeModel
+        element: <PrivateRoutes><EditeModel /></PrivateRoutes>
       },
       {
         path: 'my-models',
-        Component: MyModels
+        element: <PrivateRoutes><MyModels /></PrivateRoutes>
       },
       {
         path: "my-purchase",
-        Component: ModelPurchase
+        element: <PrivateRoutes><ModelPurchase /></PrivateRoutes>
       },
       {
         path: "*",
-        Component: Error404
+        element: <Error404 />
       }
     ],
   },

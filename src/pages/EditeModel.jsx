@@ -43,7 +43,7 @@ const EditeModel = () => {
         if (res.data.modifiedCount) {
           toast.success('Model updated successfully!');
           setSubmitingLoader(false)
-          navigate(`/models/${id}`)
+          navigate(`l/models/${id}`)
         }
         else {
           toast.error('Model not updated!');
