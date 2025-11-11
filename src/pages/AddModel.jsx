@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import useAxios from '../hooks/useAxios';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router';
 
 const AddModel = () => {
   const [submitingLoader, setSubmitingLoader] = useState(false)
   const { user } = useAuth();
   const axiosInstance = useAxios();
+  const navigate = useNavigate();
 
   const handleAddModelForm = (e) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ const AddModel = () => {
           toast.success('Model added successfully!');
           setSubmitingLoader(false)
           e.target.reset();
+          navigate('/models')
         }
       })
       .catch(err => {

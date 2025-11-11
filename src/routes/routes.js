@@ -8,6 +8,8 @@ import AllModels from "../pages/AllModels";
 import ModelDetails from "../pages/ModelDetails";
 import AddModel from "../pages/AddModel";
 import EditeModel from "../pages/EditeModel";
+import MyModels from "../pages/MyModels";
+import ModelPurchase from "../pages/ModelPurchase";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
       {
         path: "/models/:id/edit",
         Component: EditeModel
+      },
+      {
+        path: 'my-models',
+        Component: MyModels
+      },
+      {
+        path: "my-purchase",
+        Component: ModelPurchase
       },
       {
         path: "*",
