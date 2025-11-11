@@ -5,7 +5,7 @@ import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
-  const { user, logOutFunc } = useAuth();
+  const { user, logOutFunc, loading } = useAuth();
 
   const handleLogOut = () => {
     Swal.fire({
@@ -70,7 +70,7 @@ const Navbar = () => {
             <li><NavLink className='hover:bg-white hover:text-primary font-medium text-base mb-4' to="/my-models">My Models</NavLink></li>
             <li><button className="btn" onClick={handleLogOut}>Logout</button></li>
           </ul>
-        </div> : <Link className='btn' to="/login">Login</Link>}
+        </div> : loading ? <d className="skeleton size-10 shrink-0 rounded-full" /> : <Link className='btn' to="/login">Login</Link>}
       </div>
     </div>
   )

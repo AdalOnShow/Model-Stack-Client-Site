@@ -26,8 +26,8 @@ const MyModels = () => {
 
   if (loading || dataLoading) {
     return (
-      <div className="flex justify-center items-center py-16">
-        <p className="text-lg">Loading models...</p>
+      <div className="flex-center w-full h-40">
+        <span className="loading loading-spinner loading-xl"></span>
       </div>
     );
   }

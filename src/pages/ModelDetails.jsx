@@ -8,13 +8,13 @@ import Swal from "sweetalert2";
 import ModelNotFound from './../components/ModelNotFound';
 
 const ModelDetails = () => {
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const { user } = useAuth();
   const axiosInstance = useAxios();
   const navigate = useNavigate();
 
   const [model, setModel] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [purchasesLoading, setPurchasesLoading] = useState(false)
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const ModelDetails = () => {
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Yes, delete it!",
-    }).then(async(result)  => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           await axiosInstance.delete(`/models/${id}`);
@@ -89,7 +89,22 @@ const ModelDetails = () => {
   };
   const isCreator = createdBy === user?.email;
 
-  if (loading) return <p className="text-center py-10">Loading...</p>;
+  if (loading) {
+    return (
+      <div className="max-w-11/12 mx-auto my-10 bg-white rounded-2xl shadow-md p-6 grid md:grid-cols-2 gap-10">
+        <div className="flex max-w-10/12 mx-auto w-full justify-center items-center">
+          <div className="skeleton h-[40dvh] w-full" />
+        </div>
+        <div className="flex flex-col justify-center space-y-4">
+          {
+            [...Array(8)].map((_, i) => (
+              <div key={i} className="skeleton h-4 w-full"></div>
+            ))
+          }
+        </div>
+      </div>
+    )
+  }
   if (!model) return <ModelNotFound />;
 
 
