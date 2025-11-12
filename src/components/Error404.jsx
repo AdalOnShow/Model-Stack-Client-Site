@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
+
 
 const Error404 = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-6 py-12">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-700 px-6 py-12">
       <div className="text-center max-w-2xl">
         <h1 className="text-[10rem] font-extrabold text-indigo-600 mb-6 animate-bounce">
           404

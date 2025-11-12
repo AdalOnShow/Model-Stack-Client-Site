@@ -5,18 +5,10 @@
 @import "swiper/css/pagination";
 
 @plugin "daisyui" {
-  themes: light --default;
+  themes: light --default, dark --prefersdark;
 }
 
-@plugin "daisyui/theme" {
-  name: "light";
-  default: true;
-
-  /* colors */
-  --color-primary: #dda15e;
-  --color-secondary: #606c38;
-  --color-accent: #fefae0;
-}
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 * {
   font-family: "Inter", sans-serif;

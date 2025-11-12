@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link, Links, NavLink } from 'react-router'
 import { toast } from 'sonner';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 import SecondaryBtn from './SecondaryBtn';
 import PrimaryBtn from './PrimaryBtn';
-import { FiMoon, FiSun } from 'react-icons/fi';
+import useTheme from '../hooks/useTheme';
+import ToggleButton from './ToggleButton/ToggleButton';
 
 const Navbar = () => {
   const { user, logOutFunc, loading } = useAuth();
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light")
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  const { theme, toggleTheme } = useTheme();
 
   const handleLogOut = () => {
     Swal.fire({
@@ -36,9 +32,9 @@ const Navbar = () => {
   }
 
   const navLinks = (<>
-    <li><NavLink className='hover:bg-white hover:text-primary font-medium' to="/">Home</NavLink></li>
-    <li><NavLink className='hover:bg-white hover:text-primary font-medium' to="/add-model">Add Model</NavLink></li>
-    <li><NavLink className='hover:bg-white hover:text-primary font-medium' to="/models">View Models</NavLink></li>
+    <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-primary font-medium' to="/">Home</NavLink></li>
+    <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-primary font-medium' to="/add-model">Add Model</NavLink></li>
+    <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-primary font-medium' to="/models">View Models</NavLink></li>
   </>)
 
   return (
@@ -50,7 +46,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-9999 mt-3 w-52 p-2 shadow">
             {navLinks}
           </ul>
         </div>
@@ -62,16 +58,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end space-x-4">
-        <label className="toggle toggle-lg text-base-content">
-          <input
-            type="checkbox"
-            onChange={() => setTheme(theme === "light" ? "dark" : "light")}
-            checked={theme === "dark"}
-          />
-          <FiMoon />
-          <FiSun />
-        </label>
-        {user ? <div className="dropdown dropdown-end">
+        <ToggleButton theme={theme} toggleTheme={toggleTheme} />
+        {user ? <div className="dropdown dropdown-end z-9999">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               <img
@@ -88,7 +76,7 @@ const Navbar = () => {
             <li><NavLink className='hover:bg-white hover:text-primary font-medium text-base mb-4' to="/my-models">My Models</NavLink></li>
             <li><PrimaryBtn onClick={handleLogOut}>Logout</PrimaryBtn></li>
           </ul>
-        </div> : loading ? <d className="skeleton size-10 shrink-0 rounded-full" /> : <Link to="/login"><SecondaryBtn icon>Login</SecondaryBtn></Link>}
+        </div> : loading ? <div className="skeleton size-10 shrink-0 rounded-full" /> : <Link to="/login"><SecondaryBtn icon>Login</SecondaryBtn></Link>}
       </div>
     </div>
   )

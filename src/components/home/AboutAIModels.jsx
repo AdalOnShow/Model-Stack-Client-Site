@@ -27,7 +27,7 @@ export default function AboutAIModels() {
     <section className="max-w-7xl mx-auto px-6 py-16">
       <div className="text-center mb-12">
         <Heading title="About AI" highlight="Models" />
-        <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-200 max-w-3xl mx-auto text-lg leading-relaxed">
           AI models are computer systems that learn from data to make
           predictions, classify objects, or generate creative content.
           They’re built using neural networks — structures inspired by the
@@ -41,7 +41,7 @@ export default function AboutAIModels() {
         {slides.map((slide) => (
           <div
             key={slide.id}
-            className="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 bg-white"
+            className="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 bg-white dark:bg-gray-700"
           >
             <div className="h-64 w-full overflow-hidden">
               <img

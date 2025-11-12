@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
 import { toast } from "sonner";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 import ModelNotFound from './../components/ModelNotFound';
 import PrimaryBtn from "../components/PrimaryBtn";
@@ -92,7 +91,7 @@ const ModelDetails = () => {
 
   if (loading) {
     return (
-      <div className="max-w-11/12 mx-auto my-10 bg-white rounded-2xl shadow-md p-6 grid md:grid-cols-2 gap-10">
+      <div className="max-w-11/12 mx-auto my-10 rounded-2xl shadow-md p-6 grid md:grid-cols-2 gap-10">
         <div className="flex max-w-10/12 mx-auto w-full justify-center items-center">
           <div className="skeleton h-[40dvh] w-full" />
         </div>
@@ -110,7 +109,7 @@ const ModelDetails = () => {
 
 
   return (
-    <div className="max-w-11/12 mx-auto my-10 bg-white rounded-2xl shadow-md p-6 grid md:grid-cols-2 gap-10">
+    <div className="max-w-11/12 mx-auto my-10 dark:bg-gray-700 rounded-2xl shadow-md p-6 grid md:grid-cols-2 gap-10">
       <div className="flex max-w-10/12 mx-auto w-full justify-center items-center">
         <img
           src={image}
@@ -121,13 +120,13 @@ const ModelDetails = () => {
 
       <div className="flex flex-col justify-center space-y-2">
         <h2 className="text-3xl font-bold mb-3">{name}</h2>
-        <p className="text-gray-700"><span className="font-semibold">Framework:</span> {framework}</p>
-        <p className="text-gray-700"><span className="font-semibold">Use Case:</span> {useCase}</p>
-        <p className="text-gray-700"><span className="font-semibold">Dataset:</span> {dataset}</p>
-        <p className="text-gray-700"><span className="font-semibold">Created By:</span> {createdBy}</p>
-        <p className="text-gray-700 my-2">{description}</p>
+        <p className="text-gray-700 dark:text-white"><span className="font-semibold">Framework:</span> {framework}</p>
+        <p className="text-gray-700 dark:text-white"><span className="font-semibold">Use Case:</span> {useCase}</p>
+        <p className="text-gray-700 dark:text-white"><span className="font-semibold">Dataset:</span> {dataset}</p>
+        <p className="text-gray-700 dark:text-white"><span className="font-semibold">Created By:</span> {createdBy}</p>
+        <p className="text-gray-700 dark:text-white my-2">{description}</p>
 
-        <p className="text-sm text-gray-600 mb-5">
+        <p className="text-sm text-gray-600 dark:text-white mb-5">
           Purchased <span className="font-semibold">{purchased}</span> times
         </p>
 
