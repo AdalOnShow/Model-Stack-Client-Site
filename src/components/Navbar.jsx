@@ -50,7 +50,7 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <Link to="/" className="text-xl font-medium">Model Stack</Link>
+        <Link to="/" className="text-xl font-bold">Model <span className="text-indigo-600">Stack</span></Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

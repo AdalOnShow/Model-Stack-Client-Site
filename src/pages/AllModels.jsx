@@ -65,7 +65,7 @@ const AllModels = () => {
     <section className="pb-10">
       <div className="max-w-11/12 mx-auto px-6">
         <Heading title="All" highlight="Models" />
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col lg:flex-row gap-4 justify-between items-center mb-4">
           <input
             type="text"
             placeholder="Search models..."
