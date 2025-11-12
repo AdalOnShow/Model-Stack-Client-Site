@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import useAuth from '../hooks/useAuth';
+import PrimaryBtn from '../components/PrimaryBtn';
+import Heading from '../components/Heading';
 
 const Login = () => {
   const { loginUserFunc, setUser, googleSigninFunc } = useAuth();
@@ -49,6 +51,7 @@ const Login = () => {
       .catch((error) => {
         const massage = handleSigninError(error)
         toast.error(massage)
+        setLoginLoader(false)
       });
   }
 
@@ -86,13 +89,9 @@ const Login = () => {
               type="password"
               name="password"
             />
-            <button
-              className="bg-linear-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150 cursor-pointer"
-              type="submit"
-            >
-              {loginLoader ? (<>
-                <span className="loading loading-spinner" />Login...</>) : "Login"}
-            </button>
+            <PrimaryBtn submit loader={loginLoader}>
+              Login
+            </PrimaryBtn>
             <p className="text-white mt-4">
               Don't have an account?
               <Link className="text-sm text-blue-500 -200 hover:underline mt-4" to="/register"

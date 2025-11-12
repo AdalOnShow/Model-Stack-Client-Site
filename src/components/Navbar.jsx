@@ -3,6 +3,8 @@ import { Link, Links, NavLink } from 'react-router'
 import { toast } from 'sonner';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
+import SecondaryBtn from './SecondaryBtn';
+import PrimaryBtn from './PrimaryBtn';
 
 const Navbar = () => {
   const { user, logOutFunc, loading } = useAuth();
@@ -68,9 +70,9 @@ const Navbar = () => {
             <li className='font-medium ml-2 text-base mb-4 break-all whitespace-normal'>{user.email}</li>
             <li><NavLink className='hover:bg-white hover:text-primary font-medium text-base' to="/my-purchase">Model Purchase</NavLink></li>
             <li><NavLink className='hover:bg-white hover:text-primary font-medium text-base mb-4' to="/my-models">My Models</NavLink></li>
-            <li><button className="btn" onClick={handleLogOut}>Logout</button></li>
+            <li><PrimaryBtn onClick={handleLogOut}>Logout</PrimaryBtn></li>
           </ul>
-        </div> : loading ? <d className="skeleton size-10 shrink-0 rounded-full" /> : <Link className='btn' to="/login">Login</Link>}
+        </div> : loading ? <d className="skeleton size-10 shrink-0 rounded-full" /> : <Link to="/login"><SecondaryBtn icon>Login</SecondaryBtn></Link>}
       </div>
     </div>
   )

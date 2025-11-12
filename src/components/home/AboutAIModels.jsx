@@ -1,4 +1,5 @@
 import React from "react";
+import Heading from "../Heading";
 
 const slides = [
   {
@@ -25,7 +26,7 @@ export default function AboutAIModels() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold mb-4">About AI Models</h2>
+        <Heading title="About AI" highlight="Models" />
         <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
           AI models are computer systems that learn from data to make
           predictions, classify objects, or generate creative content.

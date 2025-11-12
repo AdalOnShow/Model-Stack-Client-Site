@@ -3,6 +3,7 @@ import useAxios from '../hooks/useAxios'
 import { toast } from 'sonner'
 import useAuth from '../hooks/useAuth'
 import { Link } from 'react-router'
+import Heading from '../components/Heading'
 
 const MyModels = () => {
   const [myModels, setMyModels] = useState([])
@@ -33,8 +34,8 @@ const MyModels = () => {
   }
 
   return (
-    <div className='max-w-11/12 mx-auto min-h-screen my-8'>
-      <h2 className='text-center font-medium text-2xl'>My Models</h2>
+    <div className='max-w-11/12 mx-auto min-h-screen mb-10'>
+      <Heading title="My" highlight="Models" />
       <div className="overflow-x-auto">
         <table className="table">
           <thead>

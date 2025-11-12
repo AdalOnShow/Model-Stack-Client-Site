@@ -4,6 +4,8 @@ import { Link } from "react-router";
 import useAxios from './../../hooks/useAxios';
 import { toast } from "sonner";
 import ModelCardSkeleton from "./ModelCardSkeleton";
+import PrimaryBtn from "../PrimaryBtn";
+import Heading from "../Heading";
 
 const FeaturedModels = () => {
   const [models, setModels] = useState([]);
@@ -28,9 +30,7 @@ const FeaturedModels = () => {
     return (
       <section className="py-16 bg-gray-50">
         <div className="max-w-11/12 mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
-            Featured AI Models
-          </h2>
+          <Heading title="Featured AI" highlight="Models" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
               <ModelCardSkeleton key={i} />
@@ -44,9 +44,7 @@ const FeaturedModels = () => {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-11/12 mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
-          Featured AI Models
-        </h2>
+        <Heading title="Featured AI" highlight="Models" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {models.map((model) => (
             <ModelCard key={model._id} model={model} />
@@ -54,12 +52,11 @@ const FeaturedModels = () => {
         </div>
       </div>
 
-      <div className="flex-center">
+      <div className="flex-center pt-6">
         <Link
           to="/models"
-          className="btn btn-primary mt-4"
         >
-          View All Models
+          <PrimaryBtn>View All Models</PrimaryBtn>
         </Link>
       </div>
     </section>

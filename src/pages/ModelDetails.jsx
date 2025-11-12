@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import ModelNotFound from './../components/ModelNotFound';
+import PrimaryBtn from "../components/PrimaryBtn";
 
 const ModelDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -131,22 +132,13 @@ const ModelDetails = () => {
         </p>
 
         <div className="flex gap-3">
-          <button
-            onClick={handlePurchase}
-            className="btn btn-primary cursor-pointer text-white"
-          >
-            {purchasesLoading ? (<>
-              <span className="loading loading-spinner" />Purchasing Model...</>) : "Purchase Model"}
-          </button>
+          <PrimaryBtn loader={purchasesLoading} onClick={handlePurchase}>Purchase Model</PrimaryBtn>
 
           {isCreator && (
             <>
-              <Link
-                to={`/models/${id}/edit`}
-                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg transition"
-              >
-                Edit
-              </Link>
+              <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-lg transition">              <Link
+                to={`/models/${id}/edit`}>Edit</Link>
+              </button>
               <button
                 onClick={handleDelete}
                 className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"

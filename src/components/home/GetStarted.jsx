@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PrimaryBtn from "../PrimaryBtn";
+import SecondaryBtn from "../SecondaryBtn";
 
 const GetStarted = () => {
   return (
@@ -14,19 +16,17 @@ const GetStarted = () => {
           Register or log in to start your journey with AI Model Inventory Manager.
         </p>
 
-        <div className="flex flex-col md:flex-row justify-center gap-4">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-4">
           <Link
             to="/register"
-            className="btn btn-success text-white px-8 py-3 text-lg font-medium transition-transform duration-300 hover:scale-105"
           >
-            Get Started
+            <PrimaryBtn>Get Started</PrimaryBtn>
           </Link>
 
           <Link
             to="/login"
-            className="btn btn-outline border-white text-white px-8 py-3 text-lg font-medium hover:bg-white hover:text-indigo-700 transition-colors duration-300"
           >
-            Log In
+            <SecondaryBtn icon>LogIn</SecondaryBtn>
           </Link>
         </div>
       </div>

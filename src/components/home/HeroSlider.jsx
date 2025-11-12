@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import PrimaryBtn from "../PrimaryBtn";
 
 const slides = [
   {
@@ -47,10 +48,8 @@ export default function HeroSlider() {
                 <h2 className="text-4xl md:text-5xl font-bold mb-3 drop-shadow-lg">
                   {slide.title}
                 </h2>
-                <p className="text-lg md:text-xl max-w-xl">{slide.subtitle}</p>
-                <button className="mt-6 btn btn-success text-white transition">
-                  Explor Now
-                </button>
+                <p className="text-lg md:text-xl max-w-xl mb-6">{slide.subtitle}</p>
+                <PrimaryBtn>Explor Now</PrimaryBtn>
               </div>
             </div>
           </SwiperSlide>

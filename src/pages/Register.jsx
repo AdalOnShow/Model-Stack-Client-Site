@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router'
 import { toast } from 'sonner';
 import { updateProfile } from 'firebase/auth';
 import useAuth from '../hooks/useAuth';
+import PrimaryBtn from '../components/PrimaryBtn';
 
 const Register = () => {
   const { createUserFunc, setUser, googleSigninFunc } = useAuth();
@@ -38,6 +39,7 @@ const Register = () => {
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
     if (!passwordRegex.test(password)) {
       toast.error("Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long.");
+      setRegisterLoader(false)
       return;
     }
 
@@ -58,6 +60,7 @@ const Register = () => {
           })
           .catch((error) => {
             toast.error(error.massage)
+            setRegisterLoader(false)
           });
         toast.success("Registration successful!");
         e.target.reset();
@@ -65,6 +68,7 @@ const Register = () => {
       .catch((error) => {
         const massage = handleSignupError(error)
         toast.error(massage)
+        setRegisterLoader(false)
       });
 
   }
@@ -101,6 +105,7 @@ const Register = () => {
               className="form-input"
               type="email"
               name="email"
+              required
             />
             <input
               placeholder="Photo URL"
@@ -113,14 +118,11 @@ const Register = () => {
               className="form-input"
               type="password"
               name="password"
+              required
             />
-            <button
-              className="bg-linear-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150"
-              type="submit"
-            >
-              {registerLoader ? (<>
-                <span className="loading loading-spinner" />Loading...</>) : "Register"}
-            </button>
+            <PrimaryBtn submit loader={registerLoader}>
+              Register
+            </PrimaryBtn>
             <p className="text-white mt-4">
               Already have an account?
               <Link className="text-sm text-blue-500 -200 hover:underline mt-4" to="/login"

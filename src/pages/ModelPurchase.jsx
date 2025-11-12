@@ -3,6 +3,7 @@ import useAxios from '../hooks/useAxios'
 import { toast } from 'sonner'
 import useAuth from '../hooks/useAuth'
 import { Link } from 'react-router'
+import Heading from '../components/Heading'
 
 const ModelPurchase = () => {
   const [modelsData, setmodelsData] = useState([])
@@ -33,7 +34,7 @@ const ModelPurchase = () => {
 
   return (
     <div className='max-w-11/12 mx-auto min-h-screen my-8'>
-      <h2 className='text-center font-medium text-2xl'>My Purchased Models</h2>
+      <Heading title="My Purchased" highlight="Models" />
       <div className="overflow-x-auto">
         <table className="table">
           <thead>

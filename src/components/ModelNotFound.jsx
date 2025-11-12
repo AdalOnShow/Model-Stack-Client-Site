@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
+import PrimaryBtn from "./PrimaryBtn";
 
 const ModelNotFound = () => {
   return (
@@ -14,11 +15,8 @@ const ModelNotFound = () => {
           Please go back to the homepage and try again.
         </p>
 
-        <Link
-          to="/"
-          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg transition-colors"
-        >
-          Back to Home
+        <Link to="/" className="flex-center" >
+          <PrimaryBtn>Back to Home</PrimaryBtn>
         </Link>
       </div>
     </div>

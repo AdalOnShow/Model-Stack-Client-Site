@@ -3,6 +3,8 @@ import useAuth from '../hooks/useAuth'
 import useAxios from '../hooks/useAxios';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router';
+import PrimaryBtn from '../components/PrimaryBtn';
+import Heading from '../components/Heading';
 
 const AddModel = () => {
   const [submitingLoader, setSubmitingLoader] = useState(false)
@@ -39,10 +41,9 @@ const AddModel = () => {
   }
 
   return (
-    <div className='max-w-11/12 mx-auto py-10'>
+    <div className='max-w-11/12 mx-auto pb-10'>
+      <Heading title="Add A New" highlight="Model" />
       <form onSubmit={(e) => handleAddModelForm(e)} className="max-w-xl mx-auto flex flex-col bg-gray-900 rounded-lg p-8 shadow-sm">
-        <h2 className="text-white font-bold text-lg text-center">Add A New Model</h2>
-
         <div className="flex flex-col space-y-4">
           <div>
             <label className="text-white">Name</label>
@@ -80,13 +81,10 @@ const AddModel = () => {
         </div>
 
         <div className="mt-4 flex justify-end">
-          <button
-            className="bg-linear-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150 cursor-pointer"
-            type="submit"
-          >
+          <PrimaryBtn submit>
             {submitingLoader ? (<>
               <span className="loading loading-spinner" />Creating...</>) : "Create"}
-          </button>
+          </PrimaryBtn>
         </div>
       </form>
     </div>

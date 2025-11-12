@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router';
 import useAxios from '../hooks/useAxios';
 import { toast } from 'sonner';
+import PrimaryBtn from '../components/PrimaryBtn';
+import Heading from '../components/Heading';
 
 const EditeModel = () => {
   const { id } = useParams();
@@ -58,9 +60,9 @@ const EditeModel = () => {
 
 
   return (
-    <div className='max-w-11/12 mx-auto py-10'>
+    <div className='max-w-11/12 mx-auto pb-10'>
+      <Heading title="Update" highlight="Model" />
       <form onSubmit={(e) => handleUpdateModelForm(e)} className="max-w-xl mx-auto flex flex-col bg-gray-900 rounded-lg p-8 shadow-sm">
-        <h2 className="text-white font-bold text-lg text-center">Update Model</h2>
 
         <div className="flex flex-col space-y-4">
           <div>
@@ -103,13 +105,9 @@ const EditeModel = () => {
         </div>
 
         <div className="mt-4 flex justify-end">
-          <button
-            className="bg-linear-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150 cursor-pointer"
-            type="submit"
-          >
-            {submitingLoader ? (<>
-              <span className="loading loading-spinner" />Updateing...</>) : "Update"}
-          </button>
+          <PrimaryBtn submit loader={submitingLoader}>
+            Update
+          </PrimaryBtn>
         </div>
       </form>
     </div>
