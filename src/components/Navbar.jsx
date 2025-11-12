@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, Links, NavLink } from 'react-router'
 import { toast } from 'sonner';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 import SecondaryBtn from './SecondaryBtn';
 import PrimaryBtn from './PrimaryBtn';
+import { FiMoon, FiSun } from 'react-icons/fi';
 
 const Navbar = () => {
   const { user, logOutFunc, loading } = useAuth();
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light")
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const handleLogOut = () => {
     Swal.fire({
@@ -54,7 +61,16 @@ const Navbar = () => {
           {navLinks}
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end space-x-4">
+        <label className="toggle toggle-lg text-base-content">
+          <input
+            type="checkbox"
+            onChange={() => setTheme(theme === "light" ? "dark" : "light")}
+            checked={theme === "dark"}
+          />
+          <FiMoon />
+          <FiSun />
+        </label>
         {user ? <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
