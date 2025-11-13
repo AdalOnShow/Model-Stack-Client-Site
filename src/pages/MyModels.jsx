@@ -11,7 +11,7 @@ const MyModels = () => {
   const [dataLoading, setDataLoading] = useState(true)
   const { user, loading } = useAuth()
   const axiosInstance = useAxios()
-  console.log(myModels)
+
 
   useEffect(() => {
     axiosInstance.get(`/models?email=${user?.email}`)

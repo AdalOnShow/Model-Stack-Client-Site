@@ -23,7 +23,7 @@ const AddModel = () => {
     const image = e.target.image.value;
     const description = e.target.description.value;
 
-    const newModel = { name, framework, dataset, useCase, image, description, createdBy: user?.email, createdAt: new Date().toISOString() };
+    const newModel = { name, framework, dataset, useCase, image, description, createdBy: user?.email, createdAt: new Date().toISOString(), purchased: 0 };
 
     axiosInstance.post('/models', newModel)
       .then(res => {

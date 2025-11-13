@@ -4,10 +4,12 @@ import useAxios from '../hooks/useAxios';
 import { toast } from 'sonner';
 import PrimaryBtn from '../components/PrimaryBtn';
 import Heading from '../components/Heading';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const EditeModel = () => {
   const { id } = useParams();
   const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure()
   const navigate = useNavigate();
 
   const [model, setModel] = useState([])
@@ -40,12 +42,12 @@ const EditeModel = () => {
 
     const updatedModel = { name, framework, dataset, useCase, image, description };
 
-    axiosInstance.patch(`/models/${id}`, updatedModel)
+    axiosSecure.patch(`/models/${id}`, updatedModel)
       .then(res => {
         if (res.data.modifiedCount) {
           toast.success('Model updated successfully!');
           setSubmitingLoader(false)
-          navigate(`l/models/${id}`)
+          navigate(`/models/${id}`)
         }
         else {
           toast.error('Model not updated!');

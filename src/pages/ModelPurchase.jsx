@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import useAxios from '../hooks/useAxios'
 import { toast } from 'sonner'
 import useAuth from '../hooks/useAuth'
 import { Link } from 'react-router'
 import Heading from '../components/Heading'
 import PrimaryBtn from '../components/PrimaryBtn'
+import useAxiosSecure from '../hooks/useAxiosSecure'
 
 const ModelPurchase = () => {
   const [modelsData, setmodelsData] = useState([])
   const [dataLoading, setDataLoading] = useState(true)
   const { user, loading } = useAuth()
-  const axiosInstance = useAxios()
+  const axiosSecure = useAxiosSecure()
 
   useEffect(() => {
-    axiosInstance.get(`/purchases?email=${user?.email}`)
+    axiosSecure.get(`/purchases?email=${user?.email}`)
       .then(response => {
         if (response.data) {
           setmodelsData(response.data);
@@ -22,8 +22,9 @@ const ModelPurchase = () => {
       })
       .catch(err => {
         toast.error(err?.message || "Something went wrong");
+        setDataLoading(false)
       })
-  }, [axiosInstance, user]);
+  }, [user, axiosSecure]);
 
   if (loading || dataLoading) {
     return (

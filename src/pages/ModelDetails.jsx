@@ -6,12 +6,14 @@ import { Link, useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 import ModelNotFound from './../components/ModelNotFound';
 import PrimaryBtn from "../components/PrimaryBtn";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ModelDetails = () => {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const { user } = useAuth();
-  const axiosInstance = useAxios();
+  const axiosInstance = useAxios()
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const [model, setModel] = useState(null);
@@ -34,7 +36,7 @@ const ModelDetails = () => {
   const handlePurchase = async () => {
     setPurchasesLoading(true);
     try {
-      await axiosInstance.post(`/purchases`, {
+      await axiosSecure.post(`/purchases`, {
         modelId: _id,
         modelName: name,
         framework,
@@ -46,7 +48,7 @@ const ModelDetails = () => {
       })
         .then((res) => {
           if (res.data.insertedId) {
-            axiosInstance.patch(`/models/${_id}`, { purchased: purchased + 1 })
+            axiosSecure.patch(`/models/${_id}`, { purchased: purchased + 1 })
               .then(() => {
                 toast.success("Model purchased successfully!");
                 setModel(prevModel => ({
@@ -78,7 +80,7 @@ const ModelDetails = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axiosInstance.delete(`/models/${id}`);
+          await axiosSecure.delete(`/models/${id}`);
           Swal.fire("Deleted!", "", "success");
           navigate("/models");
         } catch (err) {
