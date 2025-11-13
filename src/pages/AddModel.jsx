@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import useAuth from '../hooks/useAuth'
-import useAxios from '../hooks/useAxios';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router';
 import PrimaryBtn from '../components/PrimaryBtn';
 import Heading from '../components/Heading';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const AddModel = () => {
   const [submitingLoader, setSubmitingLoader] = useState(false)
   const { user } = useAuth();
-  const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const handleAddModelForm = (e) => {
@@ -25,7 +25,7 @@ const AddModel = () => {
 
     const newModel = { name, framework, dataset, useCase, image, description, createdBy: user?.email, createdAt: new Date().toISOString(), purchased: 0 };
 
-    axiosInstance.post('/models', newModel)
+    axiosSecure.post('/models', newModel)
       .then(res => {
         if (res.data.insertedId) {
           toast.success('Model added successfully!');

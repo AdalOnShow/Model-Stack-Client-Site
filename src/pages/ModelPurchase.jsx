@@ -69,7 +69,7 @@ const ModelPurchase = () => {
                 <td>{model.createdBy}</td>
                 <td>
                   <Link
-                    to={`/models/${model._id}`}
+                    to={`/models/${model.modelId}`}
                   >
                     <PrimaryBtn >View Details</PrimaryBtn>
                   </Link>
@@ -116,7 +116,7 @@ const ModelPurchase = () => {
             </div>
 
             <div className="flex justify-end">
-              <Link to={`/models/${model._id}`}>
+              <Link to={`/models/${model.modelId}`}>
                 <PrimaryBtn className="px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   View Details
                 </PrimaryBtn>
