@@ -1,184 +1,153 @@
-# 🌟 Model Stack Client  
-**AI Model Inventory Management Application**
 
-Model Stack Client is a full-stack AI Model Inventory Manager inspired by platforms like Hugging Face and Model Zoo. It lets users store, organize, update, search, filter, and explore AI models with rich metadata. The project combines real AI workflow concepts with modern full-stack development practices.
 
----
+# Model Stack 🌟
 
-## 🧩 Backend Repository
-https://github.com/AdalOnShow/Model-Stack-Server-Site
----
+Manage your AI models with efficiency and clarity using Model Stack.
 
-## 🚀 Core Features
+## Table of Contents 📖
 
-### 1. Authentication (Firebase)
-- Email/password registration and login  
-- Google Sign-In  
-- Redirect to intended route after login  
-- Auto-login persistence  
-- Private routes protected with context + routing guards  
+- [About the Project](#about-the-project)
+- [Project Overview](#project-overview)
+- [Key Features](#key-features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Contributing](#contributing)
+- [Contact](#contact)
 
----
+## About the Project 📃
 
-### 2. Full CRUD for AI Models
-Users can:
-- Create new models with detailed metadata  
-- View all models or open a single detailed page  
-- Edit only their own models  
-- Delete only their own models  
+Model Stack is a full-stack AI Model Inventory Management platform where users can create, manage, edit, filter, and purchase AI model entries in a clean and intuitive interface.
+The system is designed for AI learners, developers, and researchers who need a simple yet powerful dashboard for organizing AI models with metadata like framework, dataset, use case, and creation details.
 
-**Each model stores:**  
-`name, framework, useCase, dataset, imageURL, description, createdBy, createdAt, purchaseCount`
+Built with a strong focus on usability, authentication, secure operations, and responsive UI, the platform feels like a simplified version of model hubs such as Hugging Face or Model Zoo.
 
----
 
-### 3. Model Details Page
-Shows:
-- Full metadata  
-- Purchase count  
-- Creator info  
-- Edit/Delete buttons (creator only)  
+## Project Overview 📊
 
-**Purchase flow includes:**  
-- Adding a purchase document  
-- Increasing purchase count  
-- Live UI updates (no reload)  
+Summarize the project objectives, key metrics, and any relevant statistics.
 
----
+- **Objective:** Build a complete AI model management platform featuring authentication, CRUD operations, filtering, real-time purchase tracking, and user-specific dashboards.
+- **Target Audience:** Developers, students, and AI enthusiasts.
+- **Key Metrics:**  
+  - Real-time Purchase Counter
+  - Multiple Framework Filtering
+  - Secure CRUD Operations
+  - Firebase Authentication
+  - Responsive UI
+  - Private Routes Protected
+  - Clean RESTful API architecture
+- **Deployment:** 
+  - Client: Firebase Hosting
+  - Server: Vercel
 
-### 4. Search System
-- Search models by name  
-- Backend uses **case-insensitive MongoDB regex**  
-- Real-time filtered results  
+## ✨ Key Features  
 
----
+#### 1. **Full CRUD for AI Models**  
+- Add, edit, delete, and browse AI models
+- Each model displays name, framework, dataset, use case, description, and image  
+- Secure update/delete actions (creator-only)  
 
-### 5. Framework Filter
-- Framework list loads dynamically from DB  
-- Multi-select filtering supported  
-- Query-based filtering  
-- Backend uses **array matching**  
+#### 2. **Authentication System (Firebase)**  
+- Email/Password login  
+- Google Sign-In
+- Auth persistence on reload
+- Protected private routes
 
----
+#### 3. **Search Functionality**  
+- Search by model name 
+- Case-insensitive search using MongoDB `$regex`   
 
-### 6. Purchase System
-When a user buys a model:
-- Purchase data is stored  
-- `purchaseCount` increments using MongoDB `$inc`  
-- UI updates instantly  
-- Items appear in **My Purchased Models**  
+#### 4. **Framework-Based Filtering**  
+- Multi-framework filtering (e.g., TensorFlow, PyTorch) 
+- Dynamic frameworks list fetched from MongoDB  
+- Backend filtering using `$in` operator
 
----
 
-### 7. User-Specific Pages
-#### **My Models**
-- All models created by the logged-in user  
-- Card layout on mobile, table layout on desktop  
+#### 5. **Model Purchase System**  
+- Purchase a model from its detail page  
+- Increments purchase count using `$inc` 
+- Stores purchase record in a separate collection
+- Updates UI instantly
 
-#### **My Purchased Models**
-- All purchased models  
-- Shows both buyer and seller information  
+#### 6. **User Dashboards**  
+- **My Models:**
+  - Shows all models created by the logged-in user  
+- **My Purchases:**
+  - Lists all models purchased by the user
+  - Includes seller and buyer details
 
----
+#### 7. **Responsive Design**  
+- Mobile cards    
+- Desktop table layout  
+- Consistent styles using shared components
 
-### 8. Home Page
-- Featured: 6 most recently added models  
-- About AI Models section  
-- CTA section for login/registration  
+#### 9. **Dark/Light Theme Toggle**  
+- Integrated DaisyUI theme support   
+- Saved in localStorage
+- Applies across full site
 
----
+#### 9. **Additional Features**  
+- Custom 404 Page   
+- Loading Skeletons & Spinners
+- Global toast notifications (Sonner)
+- Swiper-based homepage slider
+ 
+## Tech Stack 🛠️
 
-### 9. Responsive UI
-- Mobile-first approach  
-- Cards on mobile, tables on desktop  
-- Matching image dimensions  
-- Fully responsive navbar + footer  
+- **Frontend:** React Router, TailwindCSS, DaisyUI, Context API, Axios, Firebase Auth, Swiper, Sonner Toast  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB
+- **Authentication:** Firebase, JWT  
 
----
 
-### 10. Dark/Light Theme
-- DaisyUI themes  
-- Toggle switch  
-- User preference stored in **localStorage**  
+## Installation ⚙️
 
----
+Clone the repo and install dependencies:
 
-### 11. Loading & Error Handling
-- Skeleton loaders  
-- Button spinners on form submit  
-- Toast notifications (Sonner)  
-- No warnings or errors on refresh  
-
----
-
-### 12. Custom 404 Page
-- Friendly error message  
-- Navigation button  
-- Works across all routes, even after hard reload  
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-- React  
-- React Router  
-- Context API  
-- Axios  
-- TailwindCSS + DaisyUI  
-- Firebase Authentication  
-- Swiper  
-- Sonner Toast  
-
-### Backend
-- Node.js  
-- Express.js  
-- MongoDB Official Driver  
-- CORS  
-- Environment Variables  
-
-### Database
-- **MongoDB Atlas**  
-  - `models` collection  
-  - `purchases` collection  
-
-### Deployment
-- Client: **Netlify / Vercel**  
-- Server: **Vercel**  
-- Stable private routes on reload  
-
----
-
-## 🎯 What This Project Demonstrates
-- Strong modern React workflow  
-- Clean Firebase Auth integration  
-- Proper use of MongoDB operations: regex search, array filters, `$inc`  
-- Well-structured REST API  
-- Responsive UI with consistent design  
-- Protected routing done correctly  
-- Good UX with loaders and toasts  
-- Solid understanding of full-stack architecture  
-
----
-## 📦 Installation & Setup
-
-### Install dependencies
+```bash
+git clone https://github.com/AdalOnShow/Model-Stack-Client-Site
+cd Model-Stack-Client-Site
 npm install
+```
 
-### Environment variables
-Create a `.env` file in the project root:
+Set up environment variables by creating a `.env` file in the root directory:
 
-VITE_apiKey=your_firebase_key  
-VITE_authDomain=your_domain  
-VITE_projectId=your_project_id  
-VITE_storageBucket=bucket  
-VITE_messagingSenderId=sender_id  
-VITE_appId=your_app_id  
-VITE_SERVER_URL=https://your-server.vercel.app  
+```env
+VITE_apiKey=your_firebase_api_key
+VITE_authDomain=your_firebase_auth_domain
+VITE_projectId=your_firebase_project_id
+VITE_storageBucket=your_firebase_storage_bucket
+VITE_messagingSenderId=your_firebase_messaging_sender_id
+VITE_appId=your_firebase_app_id
+VITE_measurementId=your_firebase_measurement_id
+VITE_SERVER_URL=your_server_url
 
-### Start the development server
+```
+
+Run the application:
+
+```bash
 npm run dev
+```
 
----
+## Contributing 🤝
 
+Contributions are always welcome.
 
+### Steps to contribute:
+  - Fork the Project
+  - Create a branch (`git checkout -b feature/AmazingFeature`)
+  - Commit changes (`git commit -m 'Add some AmazingFeature'`)
+  - Push the branch (`git push origin feature/AmazingFeature`)
+  - Open a Pull Request
+
+## Contact 📬
+
+**🔗 Live URL:** [Model Stack](https://model-stack.web.app/)
+
+Sharif Adal - [@AdalOnShow](https://www.linkedin.com/in/adalonshow/) - sharifadal2008@gmail.com  
+
+Client GitHub: [Model Stack Client](https://github.com/AdalOnShow/Model-Stack-Client-Site)
+ 
+
+🔗 Server GitHub: [Model Stack Server](https://github.com/AdalOnShow/Model-Stack-Server-Site)
