@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import useAuth from '../hooks/useAuth';
 import PrimaryBtn from '../components/PrimaryBtn';
-import Heading from '../components/Heading';
 
 const Login = () => {
   const { loginUserFunc, setUser, googleSigninFunc } = useAuth();
