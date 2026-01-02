@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const DangerBtn = ({ children, onClick, loader, className = "" }) => {
   return (
@@ -16,7 +16,7 @@ const DangerBtn = ({ children, onClick, loader, className = "" }) => {
         children
       )}
     </button>
-  )
-}
+  );
+};
 
-export default DangerBtn
+export default DangerBtn;

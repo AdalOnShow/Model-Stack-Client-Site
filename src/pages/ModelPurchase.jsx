@@ -1,29 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import { toast } from 'sonner'
-import useAuth from '../hooks/useAuth'
-import { Link } from 'react-router'
-import Heading from '../components/Heading'
-import PrimaryBtn from '../components/PrimaryBtn'
-import useAxiosSecure from '../hooks/useAxiosSecure'
+import React, { useEffect, useState } from "react";
+import { toast } from "sonner";
+import useAuth from "../hooks/useAuth";
+import { Link } from "react-router";
+import Heading from "../components/Heading";
+import PrimaryBtn from "../components/PrimaryBtn";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ModelPurchase = () => {
-  const [modelsData, setmodelsData] = useState([])
-  const [dataLoading, setDataLoading] = useState(true)
-  const { user, loading } = useAuth()
-  const axiosSecure = useAxiosSecure()
+  const [modelsData, setmodelsData] = useState([]);
+  const [dataLoading, setDataLoading] = useState(true);
+  const { user, loading } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    axiosSecure.get(`/purchases?email=${user?.email}`)
-      .then(response => {
+    axiosSecure
+      .get(`/purchases?email=${user?.email}`)
+      .then((response) => {
         if (response.data) {
           setmodelsData(response.data);
           setDataLoading(false);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         toast.error(err?.message || "Something went wrong");
-        setDataLoading(false)
-      })
+        setDataLoading(false);
+      });
   }, [user, axiosSecure]);
 
   if (loading || dataLoading) {
@@ -62,16 +63,16 @@ const ModelPurchase = () => {
                 <td>
                   <div className="flex flex-col">
                     <span className="font-bold">{model.modelName}</span>
-                    <span className="text-sm opacity-50">{model.framework}</span>
+                    <span className="text-sm opacity-50">
+                      {model.framework}
+                    </span>
                   </div>
                 </td>
                 <td>{model.useCase}</td>
                 <td>{model.createdBy}</td>
                 <td>
-                  <Link
-                    to={`/models/${model.modelId}`}
-                  >
-                    <PrimaryBtn >View Details</PrimaryBtn>
+                  <Link to={`/models/${model.modelId}`}>
+                    <PrimaryBtn>View Details</PrimaryBtn>
                   </Link>
                 </td>
               </tr>
@@ -98,8 +99,12 @@ const ModelPurchase = () => {
                 </div>
               </div>
               <div className="flex flex-col justify-center">
-                <h3 className="text-lg font-bold text-gray-800 dark:text-white">{model.modelName}</h3>
-                <span className="text-sm text-gray-500 dark:text-gray-400">{model.framework}</span>
+                <h3 className="text-lg font-bold text-gray-800 dark:text-white">
+                  {model.modelName}
+                </h3>
+                <span className="text-sm text-gray-500 dark:text-gray-400">
+                  {model.framework}
+                </span>
               </div>
             </div>
 
@@ -111,23 +116,21 @@ const ModelPurchase = () => {
 
             <div>
               <p className="text-gray-700 dark:text-gray-300">
-                <span className="font-semibold">Created By:</span> {model.createdBy}
+                <span className="font-semibold">Created By:</span>{" "}
+                {model.createdBy}
               </p>
             </div>
 
             <div className="flex justify-end">
               <Link to={`/models/${model.modelId}`}>
-                <PrimaryBtn>
-                  View Details
-                </PrimaryBtn>
+                <PrimaryBtn>View Details</PrimaryBtn>
               </Link>
             </div>
           </div>
-
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ModelPurchase
+export default ModelPurchase;

@@ -14,8 +14,12 @@ const ModelCard = ({ model }) => {
         </div>
 
         <div className="p-6 flex flex-col flex-1">
-          <h3 className="text-xl font-semibold text-indigo-600 mb-2">{model.name}</h3>
-          <p className="text-gray-500 dark:text-gray-200 font-medium mb-3">Framework: {model.framework}</p>
+          <h3 className="text-xl font-semibold text-indigo-600 mb-2">
+            {model.name}
+          </h3>
+          <p className="text-gray-500 dark:text-gray-200 font-medium mb-3">
+            Framework: {model.framework}
+          </p>
           <p className="text-gray-500 dark:text-gray-200 flex-1">
             {model.description.length > 40
               ? model.description.slice(0, 40) + "...see more"

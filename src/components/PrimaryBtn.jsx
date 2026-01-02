@@ -1,5 +1,3 @@
-import React from 'react'
-
 const PrimaryBtn = ({ children, submit, onClick, loader, className = "" }) => {
   return (
     <button
@@ -17,7 +15,7 @@ const PrimaryBtn = ({ children, submit, onClick, loader, className = "" }) => {
         children
       )}
     </button>
-  )
-}
+  );
+};
 
-export default PrimaryBtn
+export default PrimaryBtn;

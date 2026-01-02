@@ -29,11 +29,11 @@ export default function AboutAIModels() {
         <Heading title="About AI" highlight="Models" />
         <p className="text-gray-600 dark:text-gray-200 max-w-3xl mx-auto text-lg leading-relaxed">
           AI models are computer systems that learn from data to make
-          predictions, classify objects, or generate creative content.
-          They’re built using neural networks — structures inspired by the
-          human brain — that help machines recognize patterns and make
-          decisions. These models power everything from chatbots and voice
-          assistants to self-driving cars and image recognition systems.
+          predictions, classify objects, or generate creative content. They’re
+          built using neural networks — structures inspired by the human brain —
+          that help machines recognize patterns and make decisions. These models
+          power everything from chatbots and voice assistants to self-driving
+          cars and image recognition systems.
         </p>
       </div>
 

@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import useAxios from '../hooks/useAxios'
-import { toast } from 'sonner'
-import useAuth from '../hooks/useAuth'
-import { Link } from 'react-router'
-import Heading from '../components/Heading'
-import PrimaryBtn from '../components/PrimaryBtn'
+import React, { useEffect, useState } from "react";
+import useAxios from "../hooks/useAxios";
+import { toast } from "sonner";
+import useAuth from "../hooks/useAuth";
+import { Link } from "react-router";
+import Heading from "../components/Heading";
+import PrimaryBtn from "../components/PrimaryBtn";
 
 const MyModels = () => {
-  const [myModels, setMyModels] = useState([])
-  const [dataLoading, setDataLoading] = useState(true)
-  const { user, loading } = useAuth()
-  const axiosInstance = useAxios()
-
+  const [myModels, setMyModels] = useState([]);
+  const [dataLoading, setDataLoading] = useState(true);
+  const { user, loading } = useAuth();
+  const axiosInstance = useAxios();
 
   useEffect(() => {
-    axiosInstance.get(`/models?email=${user?.email}`)
-      .then(response => {
+    axiosInstance
+      .get(`/models?email=${user?.email}`)
+      .then((response) => {
         if (response.data) {
           setMyModels(response.data);
           setDataLoading(false);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         toast.error(err?.message || "Something went wrong");
-      })
+      });
   }, [axiosInstance, user]);
 
   if (loading || dataLoading) {
@@ -63,16 +63,16 @@ const MyModels = () => {
                 <td>
                   <div className="flex flex-col">
                     <span className="font-bold">{model.name}</span>
-                    <span className="text-sm opacity-50">{model.framework}</span>
+                    <span className="text-sm opacity-50">
+                      {model.framework}
+                    </span>
                   </div>
                 </td>
                 <td>{model.useCase}</td>
                 <td>{model.createdBy}</td>
                 <td>
-                  <Link
-                    to={`/models/${model._id}`}
-                  >
-                    <PrimaryBtn >View Details</PrimaryBtn>
+                  <Link to={`/models/${model._id}`}>
+                    <PrimaryBtn>View Details</PrimaryBtn>
                   </Link>
                 </td>
               </tr>
@@ -99,8 +99,12 @@ const MyModels = () => {
                 </div>
               </div>
               <div className="flex flex-col justify-center">
-                <h3 className="text-lg font-bold text-gray-800 dark:text-white">{model.name}</h3>
-                <span className="text-sm text-gray-500 dark:text-gray-400">{model.framework}</span>
+                <h3 className="text-lg font-bold text-gray-800 dark:text-white">
+                  {model.name}
+                </h3>
+                <span className="text-sm text-gray-500 dark:text-gray-400">
+                  {model.framework}
+                </span>
               </div>
             </div>
 
@@ -112,23 +116,21 @@ const MyModels = () => {
 
             <div>
               <p className="text-gray-700 dark:text-gray-300">
-                <span className="font-semibold">Created By:</span> {model.createdBy}
+                <span className="font-semibold">Created By:</span>{" "}
+                {model.createdBy}
               </p>
             </div>
 
             <div className="flex justify-end">
               <Link to={`/models/${model._id}`}>
-                <PrimaryBtn>
-                  View Details
-                </PrimaryBtn>
+                <PrimaryBtn>View Details</PrimaryBtn>
               </Link>
             </div>
           </div>
-
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MyModels
+export default MyModels;

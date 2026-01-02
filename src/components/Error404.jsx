@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
 
-
 const Error404 = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-700 px-6 py-12">
@@ -14,8 +13,8 @@ const Error404 = () => {
         </h2>
 
         <p className="text-gray-600 text-lg mb-8">
-          The page you are looking for does not exist, has been removed, or
-          is temporarily unavailable.
+          The page you are looking for does not exist, has been removed, or is
+          temporarily unavailable.
         </p>
         <Link
           to="/"

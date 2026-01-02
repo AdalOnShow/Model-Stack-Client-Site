@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ModelCard from "../components/ModelCard";
-import useAxios from './../hooks/useAxios';
+import useAxios from "./../hooks/useAxios";
 import { toast } from "sonner";
 import ModelCardSkeleton from "../components/home/ModelCardSkeleton";
 import Heading from "../components/Heading";
-
 
 const AllModels = () => {
   const [models, setModels] = useState([]);
@@ -27,37 +26,36 @@ const AllModels = () => {
   }, [axiosInstance]);
 
   useEffect(() => {
-  const fetchModels = async () => {
-    setLoading(true);
+    const fetchModels = async () => {
+      setLoading(true);
 
-    const params = new URLSearchParams();
-    if (searchTerm) params.append("search", searchTerm);
-    if (selectedFrameworks.length > 0) {
-      params.append("frameworks", selectedFrameworks.join(","));
-    }
+      const params = new URLSearchParams();
+      if (searchTerm) params.append("search", searchTerm);
+      if (selectedFrameworks.length > 0) {
+        params.append("frameworks", selectedFrameworks.join(","));
+      }
 
-    const url = `/models?${params.toString()}`;
+      const url = `/models?${params.toString()}`;
 
-    try {
-      const response = await axiosInstance.get(url);
-      setModels(response.data);
-    } catch (err) {
-      toast.error(err?.message || "Something went wrong");
-    } finally {
-      setLoading(false);
-    }
-  };
+      try {
+        const response = await axiosInstance.get(url);
+        setModels(response.data);
+      } catch (err) {
+        toast.error(err?.message || "Something went wrong");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchModels();
-}, [axiosInstance, searchTerm, selectedFrameworks]);
-
+    fetchModels();
+  }, [axiosInstance, searchTerm, selectedFrameworks]);
 
   const handleFrameworkChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
-      setSelectedFrameworks(prev => [...prev, value]);
+      setSelectedFrameworks((prev) => [...prev, value]);
     } else {
-      setSelectedFrameworks(prev => prev.filter(f => f !== value));
+      setSelectedFrameworks((prev) => prev.filter((f) => f !== value));
     }
   };
 
@@ -92,11 +90,9 @@ const AllModels = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {loading ? (
-            [...Array(6)].map((_, i) => (
-              <ModelCardSkeleton key={i} />
-            ))
-          ) : null}
+          {loading
+            ? [...Array(6)].map((_, i) => <ModelCardSkeleton key={i} />)
+            : null}
           {models.map((model) => (
             <ModelCard key={model._id} model={model} />
           ))}

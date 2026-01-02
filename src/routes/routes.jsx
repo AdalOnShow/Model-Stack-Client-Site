@@ -10,7 +10,7 @@ import AddModel from "../pages/AddModel";
 import EditeModel from "../pages/EditeModel";
 import MyModels from "../pages/MyModels";
 import ModelPurchase from "../pages/ModelPurchase";
-import PrivateRoutes from './PrivateRoutes';
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -23,40 +23,60 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        Component: Login
+        Component: Login,
       },
       {
         path: "/register",
-        Component: Register
+        Component: Register,
       },
       {
         path: "/models",
-        Component: AllModels
+        Component: AllModels,
       },
       {
         path: "add-model",
-        element: <PrivateRoutes><AddModel /></PrivateRoutes>
+        element: (
+          <PrivateRoutes>
+            <AddModel />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/models/:id",
-        element: <PrivateRoutes><ModelDetails /></PrivateRoutes>
+        element: (
+          <PrivateRoutes>
+            <ModelDetails />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/models/:id/edit",
-        element: <PrivateRoutes><EditeModel /></PrivateRoutes>
+        element: (
+          <PrivateRoutes>
+            <EditeModel />
+          </PrivateRoutes>
+        ),
       },
       {
-        path: 'my-models',
-        element: <PrivateRoutes><MyModels /></PrivateRoutes>
+        path: "my-models",
+        element: (
+          <PrivateRoutes>
+            <MyModels />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "my-purchase",
-        element: <PrivateRoutes><ModelPurchase /></PrivateRoutes>
+        element: (
+          <PrivateRoutes>
+            <ModelPurchase />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "*",
-        element: <Error404 />
-      }
+        element: <Error404 />,
+      },
     ],
   },
 ]);

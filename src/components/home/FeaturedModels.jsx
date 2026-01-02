@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ModelCard from "../ModelCard";
 import { Link } from "react-router";
-import useAxios from './../../hooks/useAxios';
+import useAxios from "./../../hooks/useAxios";
 import { toast } from "sonner";
 import ModelCardSkeleton from "./ModelCardSkeleton";
 import PrimaryBtn from "../PrimaryBtn";
@@ -10,7 +10,7 @@ import Heading from "../Heading";
 const FeaturedModels = () => {
   const [models, setModels] = useState([]);
   const [loading, setLoading] = useState(true);
-  const axiosInstance = useAxios()
+  const axiosInstance = useAxios();
 
   useEffect(() => {
     const fetchModels = async () => {
@@ -53,9 +53,7 @@ const FeaturedModels = () => {
       </div>
 
       <div className="flex-center pt-6">
-        <Link
-          to="/models"
-        >
+        <Link to="/models">
           <PrimaryBtn>View All Models</PrimaryBtn>
         </Link>
       </div>

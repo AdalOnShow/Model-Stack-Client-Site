@@ -15,7 +15,7 @@ const ModelNotFound = () => {
           Please go back to the homepage and try again.
         </p>
 
-        <Link to="/" className="flex-center" >
+        <Link to="/" className="flex-center">
           <PrimaryBtn>Back to Home</PrimaryBtn>
         </Link>
       </div>

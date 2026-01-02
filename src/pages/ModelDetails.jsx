@@ -4,7 +4,7 @@ import useAxios from "../hooks/useAxios";
 import { toast } from "sonner";
 import { Link, useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
-import ModelNotFound from './../components/ModelNotFound';
+import ModelNotFound from "./../components/ModelNotFound";
 import PrimaryBtn from "../components/PrimaryBtn";
 import DangerBtn from "../components/DangerBtn";
 import useAxiosSecure from "../hooks/useAxiosSecure";
@@ -13,60 +13,72 @@ const ModelDetails = () => {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const { user } = useAuth();
-  const axiosInstance = useAxios()
+  const axiosInstance = useAxios();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const [model, setModel] = useState(null);
-  const [purchasesLoading, setPurchasesLoading] = useState(false)
+  const [purchasesLoading, setPurchasesLoading] = useState(false);
 
   useEffect(() => {
-    axiosInstance.get(`/models/${id}`)
-      .then(res => {
+    axiosInstance
+      .get(`/models/${id}`)
+      .then((res) => {
         setModel(res.data);
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         toast.error(err?.message || "Something went wrong");
         setLoading(false);
       });
   }, [id, axiosInstance]);
 
-  const { _id, name, image, framework, description, useCase, purchased, createdBy, dataset } = model || {};
+  const {
+    _id,
+    name,
+    image,
+    framework,
+    description,
+    useCase,
+    purchased,
+    createdBy,
+    dataset,
+  } = model || {};
 
   const handlePurchase = async () => {
     setPurchasesLoading(true);
     try {
-      await axiosSecure.post(`/purchases`, {
-        modelId: _id,
-        modelName: name,
-        framework,
-        useCase,
-        createdBy,
-        purchasedBy: user?.displayName,
-        purchasedEmail: user?.email,
-        modelImage: image
-      })
+      await axiosSecure
+        .post(`/purchases`, {
+          modelId: _id,
+          modelName: name,
+          framework,
+          useCase,
+          createdBy,
+          purchasedBy: user?.displayName,
+          purchasedEmail: user?.email,
+          modelImage: image,
+        })
         .then((res) => {
           if (res.data.insertedId) {
-            axiosSecure.patch(`/models/${_id}`, { purchased: purchased + 1 })
+            axiosSecure
+              .patch(`/models/${_id}`, { purchased: purchased + 1 })
               .then(() => {
                 toast.success("Model purchased successfully!");
-                setModel(prevModel => ({
+                setModel((prevModel) => ({
                   ...prevModel,
-                  purchased: prevModel.purchased + 1
+                  purchased: prevModel.purchased + 1,
                 }));
                 setPurchasesLoading(false);
               })
-              .catch(err => {
+              .catch((err) => {
                 toast.error(err?.message || "Something went wrong");
               });
           }
         })
-        .catch(err => {
+        .catch((err) => {
           toast.error(err?.message || "Something went wrong");
         });
-
     } catch (err) {
       console.error(err);
     }
@@ -100,18 +112,15 @@ const ModelDetails = () => {
             <div className="skeleton h-96 w-full rounded-xl" />
           </div>
           <div className="flex flex-col justify-center space-y-4">
-            {
-              [...Array(8)].map((_, i) => (
-                <div key={i} className="skeleton h-4 w-full"></div>
-              ))
-            }
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="skeleton h-4 w-full"></div>
+            ))}
           </div>
         </div>
       </div>
-    )
+    );
   }
   if (!model) return <ModelNotFound />;
-
 
   return (
     <div className="max-w-7xl mx-auto py-16 px-6">
@@ -126,10 +135,18 @@ const ModelDetails = () => {
 
         <div className="flex flex-col justify-center space-y-4">
           <h2 className="text-4xl font-bold mb-4">{name}</h2>
-          <p className="text-gray-700 dark:text-white mb-2"><span className="font-semibold">Framework:</span> {framework}</p>
-          <p className="text-gray-700 dark:text-white mb-2"><span className="font-semibold">Use Case:</span> {useCase}</p>
-          <p className="text-gray-700 dark:text-white mb-2"><span className="font-semibold">Dataset:</span> {dataset}</p>
-          <p className="text-gray-700 dark:text-white mb-2"><span className="font-semibold">Created By:</span> {createdBy}</p>
+          <p className="text-gray-700 dark:text-white mb-2">
+            <span className="font-semibold">Framework:</span> {framework}
+          </p>
+          <p className="text-gray-700 dark:text-white mb-2">
+            <span className="font-semibold">Use Case:</span> {useCase}
+          </p>
+          <p className="text-gray-700 dark:text-white mb-2">
+            <span className="font-semibold">Dataset:</span> {dataset}
+          </p>
+          <p className="text-gray-700 dark:text-white mb-2">
+            <span className="font-semibold">Created By:</span> {createdBy}
+          </p>
           <p className="text-gray-700 dark:text-white mb-4">{description}</p>
 
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
@@ -137,7 +154,9 @@ const ModelDetails = () => {
           </p>
 
           <div className="flex gap-3">
-            <PrimaryBtn loader={purchasesLoading} onClick={handlePurchase}>Purchase Model</PrimaryBtn>
+            <PrimaryBtn loader={purchasesLoading} onClick={handlePurchase}>
+              Purchase Model
+            </PrimaryBtn>
 
             {isCreator && (
               <>
@@ -146,9 +165,7 @@ const ModelDetails = () => {
                     Edit
                   </button>
                 </Link>
-                <DangerBtn onClick={handleDelete}>
-                  Delete
-                </DangerBtn>
+                <DangerBtn onClick={handleDelete}>Delete</DangerBtn>
               </>
             )}
           </div>

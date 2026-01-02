@@ -38,15 +38,15 @@
   transition: 0.4s;
 }
 
-#input:checked+.slider {
+#input:checked + .slider {
   background-color: black;
 }
 
-#input:focus+.slider {
+#input:focus + .slider {
   box-shadow: 0 0 1px #2196f3;
 }
 
-#input:checked+.slider .sun-moon {
+#input:checked + .slider .sun-moon {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -61,7 +61,7 @@
   fill: gray;
 }
 
-#input:checked+.slider .sun-moon .moon-dot {
+#input:checked + .slider .sun-moon .moon-dot {
   opacity: 1;
 }
 
@@ -220,7 +220,7 @@
   animation-iteration-count: infinite;
 }
 
-#input:checked+.slider .stars {
+#input:checked + .slider .stars {
   -webkit-transform: translateY(0);
   -ms-transform: translateY(0);
   transform: translateY(0);

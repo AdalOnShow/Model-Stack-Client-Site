@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const ModelCardSkeleton = () => {
   return (
@@ -8,7 +8,7 @@ const ModelCardSkeleton = () => {
       <div className="skeleton h-4 w-full"></div>
       <div className="skeleton h-4 w-full"></div>
     </div>
-  )
-}
+  );
+};
 
-export default ModelCardSkeleton
+export default ModelCardSkeleton;
