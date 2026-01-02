@@ -51,7 +51,8 @@ const AllModels = () => {
         // Handle response - prioritize new paginated format
         if (response.data && response.data.models && response.data.pagination) {
           // New paginated format from updated server
-          setModels(response.data.models);
+          const modelsData = Array.isArray(response.data.models) ? response.data.models : [];
+          setModels(modelsData);
           setPagination(response.data.pagination);
         } else {
           // Fallback: treat as old format and create pagination

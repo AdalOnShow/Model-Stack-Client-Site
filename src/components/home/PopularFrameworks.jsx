@@ -12,16 +12,23 @@ const PopularFrameworks = () => {
     const fetchFrameworks = async () => {
       try {
         const response = await axiosInstance.get("/frameworks");
-        // Transform the framework names into objects with additional data
-        const frameworksData = response.data.map((name, index) => ({
-          id: index + 1,
-          name: name,
-          description: getFrameworkDescription(name),
-          models: getRandomModelCount(),
-          color: getFrameworkColor(index),
-          textColor: getFrameworkTextColor(index),
-        }));
-        setFrameworks(frameworksData);
+        // Ensure response.data is an array before mapping
+        if (Array.isArray(response.data)) {
+          // Transform the framework names into objects with additional data
+          const frameworksData = response.data.map((name, index) => ({
+            id: index + 1,
+            name: name,
+            description: getFrameworkDescription(name),
+            models: getRandomModelCount(),
+            color: getFrameworkColor(index),
+            textColor: getFrameworkTextColor(index),
+          }));
+          setFrameworks(frameworksData);
+        } else {
+          // If response is not an array, set empty array
+          setFrameworks([]);
+          toast.error("Invalid frameworks data received");
+        }
       } catch (err) {
         toast.error(err?.message || "Failed to load frameworks");
         // Fallback to empty array if API fails

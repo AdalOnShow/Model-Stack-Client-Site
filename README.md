@@ -97,6 +97,8 @@ as **Hugging Face** or **Model Zoo**.
 
 ✅ Real-time Purchase Counter  
 ✅ Multiple Framework Filtering  
+✅ **Page-based Pagination System**  
+✅ **Smart Sorting (Newest, Most Purchased, A-Z)**  
 ✅ Secure CRUD Operations  
 ✅ Firebase Authentication  
 ✅ Responsive UI  
@@ -120,12 +122,15 @@ as **Hugging Face** or **Model Zoo**.
 - Each model displays name, framework, dataset, use case, description, and image
 - Secure update/delete actions (creator-only)
 
-### 3. 🔍 Search & Filter
+### 3. 🔍 Search, Filter & Pagination
 
 - Search by model name (case-insensitive)
 - Multi-framework filtering (TensorFlow, PyTorch, etc.)
 - Dynamic frameworks list fetched from MongoDB
 - Backend filtering using MongoDB `$regex` and `$in` operators
+- **Page-based pagination** with Previous/Next controls
+- **Smart sorting options:** Newest First, Most Purchased, Name A-Z
+- Pagination works seamlessly with search and filters
 
 ### 4. 💳 Model Purchase System
 

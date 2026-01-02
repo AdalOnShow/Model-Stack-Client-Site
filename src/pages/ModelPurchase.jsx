@@ -17,12 +17,15 @@ const ModelPurchase = () => {
       .get(`/purchases?email=${user?.email}`)
       .then((response) => {
         if (response.data) {
-          setmodelsData(response.data);
+          // Ensure response.data is an array before setting
+          const purchasesData = Array.isArray(response.data) ? response.data : [];
+          setmodelsData(purchasesData);
           setDataLoading(false);
         }
       })
       .catch((err) => {
         toast.error(err?.message || "Something went wrong");
+        setmodelsData([]); // Ensure modelsData is always an array on error
         setDataLoading(false);
       });
   }, [user, axiosSecure]);
@@ -51,83 +54,97 @@ const ModelPurchase = () => {
             </tr>
           </thead>
           <tbody>
-            {modelsData.map((model) => (
-              <tr key={model._id}>
-                <td>
-                  <div className="avatar w-20 h-20">
-                    <div className="mask mask-squircle w-full h-full">
-                      <img src={model.modelImage} alt={model.modelName} />
+            {Array.isArray(modelsData) && modelsData.length > 0 ? (
+              modelsData.map((model) => (
+                <tr key={model._id}>
+                  <td>
+                    <div className="avatar w-20 h-20">
+                      <div className="mask mask-squircle w-full h-full">
+                        <img src={model.modelImage} alt={model.modelName} />
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <div className="flex flex-col">
-                    <span className="font-bold">{model.modelName}</span>
-                    <span className="text-sm opacity-50">
-                      {model.framework}
-                    </span>
-                  </div>
-                </td>
-                <td>{model.useCase}</td>
-                <td>{model.createdBy}</td>
-                <td>
-                  <Link to={`/models/${model.modelId}`}>
-                    <PrimaryBtn>View Details</PrimaryBtn>
-                  </Link>
+                  </td>
+                  <td>
+                    <div className="flex flex-col">
+                      <span className="font-bold">{model.modelName}</span>
+                      <span className="text-sm opacity-50">
+                        {model.framework}
+                      </span>
+                    </div>
+                  </td>
+                  <td>{model.useCase}</td>
+                  <td>{model.createdBy}</td>
+                  <td>
+                    <Link to={`/models/${model.modelId}`}>
+                      <PrimaryBtn>View Details</PrimaryBtn>
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center py-8">
+                  <p className="text-gray-500 dark:text-gray-400">No purchased models found</p>
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
 
       {/* Mobile & Tablet Cards */}
       <div className="lg:hidden flex flex-col gap-6">
-        {modelsData.map((model) => (
-          <div
-            key={model._id}
-            className="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-4"
-          >
-            <div className="flex items-center gap-4">
-              <div className="avatar w-24 h-24 shrink-0">
-                <div className="mask mask-squircle w-full h-full overflow-hidden">
-                  <img
-                    src={model.modelImage}
-                    alt={model.modelName}
-                    className="object-cover w-full h-full"
-                  />
+        {Array.isArray(modelsData) && modelsData.length > 0 ? (
+          modelsData.map((model) => (
+            <div
+              key={model._id}
+              className="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-4"
+            >
+              <div className="flex items-center gap-4">
+                <div className="avatar w-24 h-24 shrink-0">
+                  <div className="mask mask-squircle w-full h-full overflow-hidden">
+                    <img
+                      src={model.modelImage}
+                      alt={model.modelName}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center">
+                  <h3 className="text-lg font-bold text-gray-800 dark:text-white">
+                    {model.modelName}
+                  </h3>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    {model.framework}
+                  </span>
                 </div>
               </div>
-              <div className="flex flex-col justify-center">
-                <h3 className="text-lg font-bold text-gray-800 dark:text-white">
-                  {model.modelName}
-                </h3>
-                <span className="text-sm text-gray-500 dark:text-gray-400">
-                  {model.framework}
-                </span>
+
+              <div>
+                <p className="text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Use Case:</span> {model.useCase}
+                </p>
+              </div>
+
+              <div>
+                <p className="text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Created By:</span>{" "}
+                  {model.createdBy}
+                </p>
+              </div>
+
+              <div className="flex justify-end">
+                <Link to={`/models/${model.modelId}`}>
+                  <PrimaryBtn>View Details</PrimaryBtn>
+                </Link>
               </div>
             </div>
-
-            <div>
-              <p className="text-gray-700 dark:text-gray-300">
-                <span className="font-semibold">Use Case:</span> {model.useCase}
-              </p>
-            </div>
-
-            <div>
-              <p className="text-gray-700 dark:text-gray-300">
-                <span className="font-semibold">Created By:</span>{" "}
-                {model.createdBy}
-              </p>
-            </div>
-
-            <div className="flex justify-end">
-              <Link to={`/models/${model.modelId}`}>
-                <PrimaryBtn>View Details</PrimaryBtn>
-              </Link>
-            </div>
+          ))
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-500 dark:text-gray-400">No purchased models found</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
