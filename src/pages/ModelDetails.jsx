@@ -6,6 +6,7 @@ import { Link, useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 import ModelNotFound from './../components/ModelNotFound';
 import PrimaryBtn from "../components/PrimaryBtn";
+import DangerBtn from "../components/DangerBtn";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ModelDetails = () => {
@@ -93,16 +94,18 @@ const ModelDetails = () => {
 
   if (loading) {
     return (
-      <div className="max-w-11/12 mx-auto my-10 rounded-2xl shadow-md p-6 grid md:grid-cols-2 gap-10">
-        <div className="flex max-w-10/12 mx-auto w-full justify-center items-center">
-          <div className="skeleton h-[40dvh] w-full" />
-        </div>
-        <div className="flex flex-col justify-center space-y-4">
-          {
-            [...Array(8)].map((_, i) => (
-              <div key={i} className="skeleton h-4 w-full"></div>
-            ))
-          }
+      <div className="max-w-7xl mx-auto py-16 px-6">
+        <div className="bg-white dark:bg-gray-700 rounded-xl shadow-sm p-8 grid md:grid-cols-2 gap-8">
+          <div className="flex justify-center items-center">
+            <div className="skeleton h-96 w-full rounded-xl" />
+          </div>
+          <div className="flex flex-col justify-center space-y-4">
+            {
+              [...Array(8)].map((_, i) => (
+                <div key={i} className="skeleton h-4 w-full"></div>
+              ))
+            }
+          </div>
         </div>
       </div>
     )
@@ -111,43 +114,44 @@ const ModelDetails = () => {
 
 
   return (
-    <div className="max-w-11/12 mx-auto my-10 dark:bg-gray-700 rounded-2xl shadow-md p-6 grid md:grid-cols-2 gap-10">
-      <div className="flex max-w-10/12 mx-auto w-full justify-center items-center">
-        <img
-          src={image}
-          alt={name}
-          className="rounded-xl w-full h-auto object-cover shadow-lg"
-        />
-      </div>
+    <div className="max-w-7xl mx-auto py-16 px-6">
+      <div className="bg-white dark:bg-gray-700 rounded-xl shadow-sm p-8 grid md:grid-cols-2 gap-8">
+        <div className="flex justify-center items-center">
+          <img
+            src={image}
+            alt={name}
+            className="rounded-xl w-full h-auto object-cover shadow-sm max-h-96"
+          />
+        </div>
 
-      <div className="flex flex-col justify-center space-y-2">
-        <h2 className="text-3xl font-bold mb-3">{name}</h2>
-        <p className="text-gray-700 dark:text-white"><span className="font-semibold">Framework:</span> {framework}</p>
-        <p className="text-gray-700 dark:text-white"><span className="font-semibold">Use Case:</span> {useCase}</p>
-        <p className="text-gray-700 dark:text-white"><span className="font-semibold">Dataset:</span> {dataset}</p>
-        <p className="text-gray-700 dark:text-white"><span className="font-semibold">Created By:</span> {createdBy}</p>
-        <p className="text-gray-700 dark:text-white my-2">{description}</p>
+        <div className="flex flex-col justify-center space-y-4">
+          <h2 className="text-4xl font-bold mb-4">{name}</h2>
+          <p className="text-gray-700 dark:text-white mb-2"><span className="font-semibold">Framework:</span> {framework}</p>
+          <p className="text-gray-700 dark:text-white mb-2"><span className="font-semibold">Use Case:</span> {useCase}</p>
+          <p className="text-gray-700 dark:text-white mb-2"><span className="font-semibold">Dataset:</span> {dataset}</p>
+          <p className="text-gray-700 dark:text-white mb-2"><span className="font-semibold">Created By:</span> {createdBy}</p>
+          <p className="text-gray-700 dark:text-white mb-4">{description}</p>
 
-        <p className="text-sm text-gray-600 dark:text-white mb-5">
-          Purchased <span className="font-semibold">{purchased}</span> times
-        </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
+            Purchased <span className="font-semibold">{purchased}</span> times
+          </p>
 
-        <div className="flex gap-3">
-          <PrimaryBtn loader={purchasesLoading} onClick={handlePurchase}>Purchase Model</PrimaryBtn>
+          <div className="flex gap-3">
+            <PrimaryBtn loader={purchasesLoading} onClick={handlePurchase}>Purchase Model</PrimaryBtn>
 
-          {isCreator && (
-            <>
-              <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-lg transition">              <Link
-                to={`/models/${id}/edit`}>Edit</Link>
-              </button>
-              <button
-                onClick={handleDelete}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"
-              >
-                Delete
-              </button>
-            </>
-          )}
+            {isCreator && (
+              <>
+                <Link to={`/models/${id}/edit`}>
+                  <button className="px-4 py-2 bg-yellow-500 text-white font-medium rounded-xl hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors duration-200">
+                    Edit
+                  </button>
+                </Link>
+                <DangerBtn onClick={handleDelete}>
+                  Delete
+                </DangerBtn>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

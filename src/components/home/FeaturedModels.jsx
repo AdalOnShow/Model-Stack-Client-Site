@@ -28,10 +28,10 @@ const FeaturedModels = () => {
 
   if (loading) {
     return (
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-11/12 mx-auto px-6">
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-6">
           <Heading title="Featured AI" highlight="Models" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
               <ModelCardSkeleton key={i} />
             ))}
@@ -43,9 +43,9 @@ const FeaturedModels = () => {
 
   return (
     <section className="py-16">
-      <div className="max-w-11/12 mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         <Heading title="Featured AI" highlight="Models" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {models.map((model) => (
             <ModelCard key={model._id} model={model} />
           ))}

@@ -25,7 +25,7 @@ const slides = [
 export default function AboutAIModels() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
-      <div className="text-center mb-12">
+      <div className="text-center mb-8">
         <Heading title="About AI" highlight="Models" />
         <p className="text-gray-600 dark:text-gray-200 max-w-3xl mx-auto text-lg leading-relaxed">
           AI models are computer systems that learn from data to make
@@ -41,7 +41,7 @@ export default function AboutAIModels() {
         {slides.map((slide) => (
           <div
             key={slide.id}
-            className="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 bg-white dark:bg-gray-700"
+            className="rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 bg-white dark:bg-gray-700"
           >
             <div className="h-64 w-full overflow-hidden">
               <img
@@ -50,7 +50,7 @@ export default function AboutAIModels() {
                 className="w-full h-full object-cover transform hover:scale-105 transition duration-500"
               />
             </div>
-            <div className="p-5 text-center">
+            <div className="p-6 text-center">
               <h3 className="text-xl font-semibold mb-2">{slide.title}</h3>
               <p className="text-gray-600 text-sm">{slide.caption}</p>
             </div>

@@ -41,49 +41,78 @@ const AddModel = () => {
   }
 
   return (
-    <div className='max-w-11/12 mx-auto pb-10'>
+    <div className='max-w-7xl mx-auto py-16 px-6'>
       <Heading title="Add A New" highlight="Model" />
-      <form onSubmit={(e) => handleAddModelForm(e)} className="max-w-xl mx-auto flex flex-col bg-gray-900 rounded-lg p-8 shadow-sm">
+      <form onSubmit={(e) => handleAddModelForm(e)} className="max-w-xl mx-auto flex flex-col bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm">
         <div className="flex flex-col space-y-4">
           <div>
-            <label className="text-white">Name</label>
-            <input required placeholder="Model name" name='name' className="add-form-input" type="text" />
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+            <input 
+              required 
+              placeholder="Model name" 
+              name='name' 
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" 
+              type="text" 
+            />
           </div>
 
-          <div className="flex-center space-x-2">
+          <div className="flex gap-4">
             <div className="flex-1">
-              <label className="text-white">Framework</label>
-              <input placeholder="Framework" name='framework' className="add-form-input" type="text" />
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Framework</label>
+              <input 
+                placeholder="Framework" 
+                name='framework' 
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" 
+                type="text" 
+              />
             </div>
 
             <div className="flex-1">
-              <label className="text-white">Dataset</label>
-              <input placeholder="Dataset" name='dataset' className="add-form-input" type="text" />
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Dataset</label>
+              <input 
+                placeholder="Dataset" 
+                name='dataset' 
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" 
+                type="text" 
+              />
             </div>
           </div>
 
           <div>
-            <label className="text-white">Use Case</label>
-            <input placeholder="Use Case" name='useCase' className="add-form-input" type="text" />
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Use Case</label>
+            <input 
+              placeholder="Use Case" 
+              name='useCase' 
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" 
+              type="text" 
+            />
           </div>
 
           <div>
-            <div className="flex-1">
-              <label className="text-white">Image(URL)</label>
-              <input required placeholder="eg. https://example.com/image.jpg" name='image' className="add-form-input" type="text" />
-            </div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Image URL</label>
+            <input 
+              required 
+              placeholder="eg. https://example.com/image.jpg" 
+              name='image' 
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" 
+              type="text" 
+            />
           </div>
 
           <div>
-            <label className="text-white">Description</label>
-            <textarea required placeholder="Write Description" className="add-form-input" name='description' />
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description</label>
+            <textarea 
+              required 
+              placeholder="Write Description" 
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 min-h-[120px]" 
+              name='description' 
+            />
           </div>
         </div>
 
-        <div className="mt-4 flex justify-end">
-          <PrimaryBtn submit>
-            {submitingLoader ? (<>
-              <span className="loading loading-spinner" />Creating...</>) : "Create"}
+        <div className="mt-8 flex justify-end">
+          <PrimaryBtn submit loader={submitingLoader}>
+            Create Model
           </PrimaryBtn>
         </div>
       </form>

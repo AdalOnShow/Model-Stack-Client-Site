@@ -35,7 +35,7 @@ const MyModels = () => {
   }
 
   return (
-    <div className="max-w-11/12 mx-auto min-h-screen mb-10">
+    <div className="max-w-7xl mx-auto py-16 px-6">
       <Heading title="My" highlight="Models" />
 
       {/* Desktop Table */}
@@ -82,11 +82,11 @@ const MyModels = () => {
       </div>
 
       {/* Mobile & Tablet Cards */}
-      <div className="lg:hidden flex flex-col gap-4">
+      <div className="lg:hidden flex flex-col gap-6">
         {myModels.map((model) => (
           <div
             key={model._id}
-            className="bg-linear-to-r from-white to-gray-50 border border-gray-200 rounded-2xl p-5 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col gap-4"
+            className="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-4"
           >
             <div className="flex items-center gap-4">
               <div className="avatar w-24 h-24 shrink-0">
@@ -99,26 +99,26 @@ const MyModels = () => {
                 </div>
               </div>
               <div className="flex flex-col justify-center">
-                <h3 className="text-lg font-bold text-gray-800">{model.name}</h3>
-                <span className="text-sm text-gray-500">{model.framework}</span>
+                <h3 className="text-lg font-bold text-gray-800 dark:text-white">{model.name}</h3>
+                <span className="text-sm text-gray-500 dark:text-gray-400">{model.framework}</span>
               </div>
             </div>
 
             <div>
-              <p className="text-gray-700">
+              <p className="text-gray-700 dark:text-gray-300">
                 <span className="font-semibold">Use Case:</span> {model.useCase}
               </p>
             </div>
 
             <div>
-              <p className="text-gray-700">
+              <p className="text-gray-700 dark:text-gray-300">
                 <span className="font-semibold">Created By:</span> {model.createdBy}
               </p>
             </div>
 
             <div className="flex justify-end">
               <Link to={`/models/${model._id}`}>
-                <PrimaryBtn className="px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <PrimaryBtn>
                   View Details
                 </PrimaryBtn>
               </Link>

@@ -32,13 +32,13 @@ const Navbar = () => {
   }
 
   const navLinks = (<>
-    <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-primary font-medium' to="/">Home</NavLink></li>
-    <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-primary font-medium' to="/add-model">Add Model</NavLink></li>
-    <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-primary font-medium' to="/models">View Models</NavLink></li>
+    <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-indigo-600 font-medium' to="/">Home</NavLink></li>
+    <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-indigo-600 font-medium' to="/add-model">Add Model</NavLink></li>
+    <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-indigo-600 font-medium' to="/models">View Models</NavLink></li>
   </>)
 
   return (
-    <div className="navbar max-w-11/12 mx-auto">
+    <div className="navbar max-w-7xl mx-auto px-6">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -63,7 +63,7 @@ const Navbar = () => {
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               <img
-                alt="Tailwind CSS Navbar component"
+                alt="User avatar"
                 src={user.photoURL} />
             </div>
           </div>
@@ -72,8 +72,8 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
             <li className='font-bold ml-2 text-base'>{user.displayName}</li>
             <li className='font-medium ml-2 text-base mb-4 break-all whitespace-normal'>{user.email}</li>
-            <li><NavLink className='hover:bg-white hover:text-primary font-medium text-base' to="/my-purchase">Model Purchase</NavLink></li>
-            <li><NavLink className='hover:bg-white hover:text-primary font-medium text-base mb-4' to="/my-models">My Models</NavLink></li>
+            <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-indigo-600 font-medium text-base' to="/my-purchase">Model Purchase</NavLink></li>
+            <li><NavLink className='hover:bg-white dark:hover:bg-[#1d232a] hover:text-indigo-600 font-medium text-base mb-4' to="/my-models">My Models</NavLink></li>
             <li><PrimaryBtn onClick={handleLogOut}>Logout</PrimaryBtn></li>
           </ul>
         </div> : loading ? <div className="skeleton size-10 shrink-0 rounded-full" /> : <Link to="/login"><SecondaryBtn icon>Login</SecondaryBtn></Link>}

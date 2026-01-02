@@ -15,17 +15,24 @@
 }
 
 .active {
-  @apply font-bold text-primary;
+  @apply font-bold text-indigo-600;
 }
 
 .flex-center {
   @apply flex items-center justify-center;
 }
 
-.form-input {
-  @apply bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150;
+/* Typography Hierarchy */
+h1 {
+  @apply text-4xl font-bold;
 }
 
-.add-form-input {
-  @apply w-full bg-gray-800 rounded-md border-gray-700 text-white px-2 py-2
+h2 {
+  @apply text-3xl font-semibold;
 }
+
+h3 {
+  @apply text-xl font-semibold;
+}
+
+/* Remove old inconsistent form styles */

@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const ModelCard = ({ model }) => {
   return (
     <Link to={`/models/${model._id}`}>
-      <div className="bg-white dark:bg-gray-700 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col overflow-hidden cursor-pointer">
+      <div className="bg-white dark:bg-gray-700 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col overflow-hidden cursor-pointer min-h-[320px]">
         <div className="w-full h-56 overflow-hidden">
           <img
             src={model.image}
