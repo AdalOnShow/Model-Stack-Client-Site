@@ -62,7 +62,7 @@ const ModelDetails = () => {
         .then((res) => {
           if (res.data.insertedId) {
             axiosSecure
-              .patch(`/models/${_id}`, { purchased: purchased + 1 })
+              .patch(`/models/${_id}/purchase`)
               .then(() => {
                 toast.success("Model purchased successfully!");
                 setModel((prevModel) => ({

@@ -8,7 +8,10 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    // eslint-disable-next-line no-undef
+    require("daisyui")
+  ],
 
   daisyui: {
     themes: ["light", "dark"], // light & dark দুইটা theme enable
